@@ -1,0 +1,15 @@
+merciful-respawn/
+├── build.gradle
+├── settings.gradle
+├── gradle_wrapper/
+│   └── gradle-wrapper.properties
+├── src/
+│   └── main/
+│       ├── java/com/example/mercifulrespawn/
+│       │   ├── MercifulRespawn.java
+│       │   ├── PlayerRespawnHandler.java
+│       │   ├── AttackEventHandler.java
+│       │   └── RespawnCommandHandler.java
+│       └── resources/META-INF/
+│           └── mods.toml
+└── README.md
