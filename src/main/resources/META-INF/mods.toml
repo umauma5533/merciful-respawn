@@ -1,0 +1,12 @@
+modLoader="javafml"
+loaderVersion="[40,)"
+license="MIT"
+
+[[mods]]
+modId="mercifulrespawn"
+version="1.0.0"
+displayName="Merciful Respawn"
+description='''
+プレイヤーが死んだ地点の近くで復活し、プレイヤーが敵MOBを攻撃するまで敵MOBから攻撃されないMODです。
+Dawn Craftとの互換性を考慮して作成されています。
+'''
