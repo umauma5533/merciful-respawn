@@ -30,16 +30,17 @@ public class RespawnManager {
 
     @SubscribeEvent
     public static void onPlayerDeath(PlayerEvent.Clone event) {
-        Player player = event.getEntity();
-        if (player instanceof ServerPlayer serverPlayer) {
-            // 死亡地点を記録
-            Vec3 deathPos = player.position();
-            RespawnData respawnData = new RespawnData(deathPos);
-            respawnDataMap.put(player.getUUID(), respawnData);
+        if (event.getEntity() instanceof Player player) {
+            if (player instanceof ServerPlayer serverPlayer) {
+                // 死亡地点を記録
+                Vec3 deathPos = player.position();
+                RespawnData respawnData = new RespawnData(deathPos);
+                respawnDataMap.put(player.getUUID(), respawnData);
 
-            // 復活地点を設定（死亡地点の近く）
-            Vec3 respawnPos = calculateRespawnPosition(deathPos);
-            serverPlayer.setPos(respawnPos.x, respawnPos.y, respawnPos.z);
+                // 復活地点を設定（死亡地点の近く）
+                Vec3 respawnPos = calculateRespawnPosition(deathPos);
+                serverPlayer.setPos(respawnPos.x, respawnPos.y, respawnPos.z);
+            }
         }
     }
 
