@@ -1,0 +1,6 @@
+{
+  "enableMod": true,
+  "respawnRadius": 50,
+  "gracePeriodTicks": 6000,
+  "description": "Merciful Respawn MOD Configuration"
+}

@@ -45,8 +45,9 @@ public class RespawnManager {
     }
 
     private static Vec3 calculateRespawnPosition(Vec3 deathPos) {
-        // 設定から復活半径を取得
-        int respawnRadius = Config.RESPAWN_RADIUS.get();
+        // JSON設定から復活半径を取得
+        JSONConfig.ConfigData config = JSONConfig.loadConfig();
+        int respawnRadius = config.respawnRadius;
         
         // 死亡地点から設定された半径以内の安全な場所を探す
         double angle = Math.random() * 2 * Math.PI;
@@ -71,8 +72,9 @@ public class RespawnManager {
     }
 
     public static boolean isInGracePeriod(UUID playerUUID) {
-        // MODが無効の場合は常にfalse
-        if (!Config.ENABLE_MOD.get()) {
+        // JSON設定からMODの有効/無効を取得
+        JSONConfig.ConfigData config = JSONConfig.loadConfig();
+        if (!config.enableMod) {
             return false;
         }
         
@@ -82,8 +84,8 @@ public class RespawnManager {
         long currentTime = System.currentTimeMillis();
         long elapsedTicks = (currentTime - data.respawnTime) / 50; // 50ms = 1 tick
         
-        // 設定から無敵時間を取得
-        int gracePeriodTicks = Config.GRACE_PERIOD_TICKS.get();
+        // JSON設定から無敵時間を取得
+        int gracePeriodTicks = config.gracePeriodTicks;
         
         return elapsedTicks < gracePeriodTicks && !data.hasAttackedMob;
     }

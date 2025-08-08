@@ -10,22 +10,27 @@
 - **Dawn Craft対応**: Dawn Craftとの互換性を考慮して設計されています
 
 ## 設定
-MODの設定は `config/mercifulrespawn-server.toml` ファイルで変更できます：
+MODの設定は `config/merciful-respawn-config.json` ファイルで変更できます。MODが初回読み込み時に自動的に生成されます：
 
-```toml
-[general]
-# MODを有効にするかどうか
-enableMod = true
-# 復活地点の半径（ブロック）
-respawnRadius = 50
-# 無敵時間（tick、1分 = 1200 ticks）
-gracePeriodTicks = 6000
+```json
+{
+  "enableMod": true,
+  "respawnRadius": 50,
+  "gracePeriodTicks": 6000,
+  "description": "Merciful Respawn MOD Configuration"
+}
 ```
 
 ### 設定項目の詳細
-- **enableMod**: MODの有効/無効を切り替えます
-- **respawnRadius**: 死亡地点からの復活可能範囲をブロック単位で指定
-- **gracePeriodTicks**: 復活後の無敵時間をtick単位で指定（20tick = 1秒）
+- **enableMod**: MODの有効/無効を切り替えます（true/false）
+- **respawnRadius**: 死亡地点からの復活可能範囲をブロック単位で指定（10-200推奨）
+- **gracePeriodTicks**: 復活後の無敵時間をtick単位で指定（20tick = 1秒、1200-12000推奨）
+- **description**: 設定ファイルの説明（変更不要）
+
+### 設定ファイルの場所
+- **生成場所**: `config/merciful-respawn-config.json`
+- **自動生成**: MOD初回読み込み時に自動的に生成されます
+- **手動編集**: ゲーム終了後にJSONファイルを直接編集可能
 
 ## 使用方法
 1. MODをインストールしてMinecraftを起動
@@ -125,10 +130,12 @@ merciful-respawn/
 │   ├── RespawnManager.java          # 復活管理
 │   ├── MobAttackHandler.java        # MOB攻撃処理
 │   ├── PlayerEventHandler.java      # プレイヤーイベント処理
-│   └── Config.java                  # 設定管理
+│   ├── Config.java                  # 設定管理（ForgeConfigSpec）
+│   └── JSONConfig.java             # JSON設定ファイル管理
 ├── src/main/resources/
 │   ├── META-INF/mods.toml          # MODメタデータ
 │   └── pack.mcmeta                 # リソースパックメタデータ
+├── config-example.json              # 設定ファイルの例
 └── build.gradle                    # ビルド設定
 ```
 
@@ -149,6 +156,8 @@ merciful-respawn/
 - 無敵期間機能
 - 設定可能なパラメータ
 - ResourcePackInfo警告の修正
+- JSON設定ファイルの自動生成機能
+- Gsonライブラリの統合
 
 ## 貢献
 このプロジェクトへの貢献を歓迎します：

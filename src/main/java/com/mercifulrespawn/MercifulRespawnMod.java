@@ -15,10 +15,19 @@ public class MercifulRespawnMod {
         
         // 設定を登録
         Config.register();
+        
+        // JSON設定ファイルを生成
+        JSONConfig.generateConfigFile();
     }
 
     private void setup(final FMLCommonSetupEvent event) {
         // 初期化処理
         System.out.println("Merciful Respawn MOD が初期化されました");
+        
+        // 設定ファイルを読み込み
+        JSONConfig.ConfigData config = JSONConfig.loadConfig();
+        System.out.println("Merciful Respawn MOD: Config loaded - EnableMod: " + config.enableMod + 
+                         ", RespawnRadius: " + config.respawnRadius + 
+                         ", GracePeriodTicks: " + config.gracePeriodTicks);
     }
 }
